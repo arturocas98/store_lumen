@@ -13,6 +13,10 @@ export const environment = {
     appId: "1:329869182777:web:fdc05a43e4150138f10ae8"
   },
   login:'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAFUmp4pVUx2huv5vVklwvO59RFluzTlBw',
+  registro:'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAFUmp4pVUx2huv5vVklwvO59RFluzTlBw',
+  // URL_API:'http://localhost:8000',
+  URL_API:'https://storeapilumen.000webhostapp.com',
+
 };
 
 /*

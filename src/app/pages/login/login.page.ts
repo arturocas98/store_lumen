@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
   }
 
   goToRegister(){
-    console.log("Registrar");
+    this.navController.navigateForward('/registro');
   }
 
 

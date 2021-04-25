@@ -1,0 +1,59 @@
+<ion-content>
+  <ion-item style="margin-top: 20px;" class="ion-text-center">
+    <ion-label> Tiendify </ion-label>
+  </ion-item>
+
+  <figure class="ion-text-center" style="margin-top:60px;">
+    <img src="assets/img/store.jpg" alt="" style="border-radius:5% ;">
+  </figure>
+  <form style="margin-top: 50px;" [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+    <ion-item>
+      <ion-label>Correo</ion-label>
+      <ion-input formControlName="email"> </ion-input>
+    </ion-item>
+
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div *ngIf="loginForm.get('email').hasError(validation.type) 
+          && (loginForm.get('email').dirty || 
+          loginForm.get('email').touched) ">
+          {{validation.message}}
+        </div>
+
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label>Contraseña</ion-label>
+      <ion-input type="password" formControlName="password"> </ion-input>
+    </ion-item>
+
+    <div class="validation-error">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div *ngIf="loginForm.get('password').hasError(validation.type) 
+          && (loginForm.get('password').dirty ||
+          loginForm.get('password').touched)">
+          {{validation.message}}
+        </div>
+
+      </ng-container>
+    </div>
+    {{errorMessage}}
+
+    <ion-button style="margin-top: 20px;" expand="full" [disabled]="!loginForm.valid" shape="round" color="success"
+      type="submit">Iniciar sesión
+    </ion-button>
+
+    <!-- <ion-button style="margin-top: 20px;" expand="full" [disabled]="!loginForm.valid" shape="round" color="danger"
+      type="submit">Inicia sesión con Google
+    </ion-button> -->
+
+
+
+  </form>
+
+  <ion-footer style="margin-top: 90px;" class="ion-text-center">
+    <ion-button style="margin-bottom: 80px;" expand="full" fill="outline" shape="round" color="success"
+      (click)="goToRegister()">click para Registrar
+    </ion-button>
+  </ion-footer>
+</ion-content>

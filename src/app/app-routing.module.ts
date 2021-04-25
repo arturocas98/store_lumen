@@ -6,21 +6,26 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'menu',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'menu',
-    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule),
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
     canActivate:[LoginGuard]
   },
+  // {
+  //   path: 'menu',
+  //   loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule),
+  //   // canActivate:[LoginGuard]
+  // },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
 ];
 

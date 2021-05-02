@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Unidad de medida</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+
+    <ion-list>
+
+      <section>
+        <ion-searchbar placeholder="Buscar" showCancelButton="never"></ion-searchbar>
+
+      </section>
+
+      <ion-list-header>
+        <ion-button routerLink="/unidad-medida/unidadAdd" color="warning">
+          <ion-icon name="add-circle-sharp" ios="add-circle-outline"></ion-icon>
+        </ion-button>
+        <h2>Listado de unidades de medida</h2>
+
+      </ion-list-header>
+
+
+
+
+      <ion-item style="margin-top:10px">
+        <ion-avatar slot="start">
+          <img src="assets/img/store.jpg">
+        </ion-avatar>
+        <ion-label>
+          <h2>Coca cola </h2>
+
+        </ion-label>
+        <ion-buttons slot="end">
+
+          <ion-button size="small" color="success">
+            <ion-icon name="pencil-sharp" ios="pencil-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button size="small" color="danger">
+            <ion-icon name="trash-sharp" ios="trash-outline"></ion-icon>
+          </ion-button>
+
+          <!-- <ion-button size="small" color="tertiary">Tertiary</ion-button> -->
+        </ion-buttons>
+      </ion-item>
+
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="assets/img/store.jpg">
+        </ion-avatar>
+        <ion-label>
+          <h2>Fanta </h2>
+
+        </ion-label>
+        <ion-buttons slot="end">
+
+          <ion-button color="success">
+            <ion-icon name="pencil-sharp" ios="pencil-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button color="danger">
+            <ion-icon name="trash-sharp" ios="trash-outline"></ion-icon>
+          </ion-button>
+
+          <!-- <ion-button  color="tertiary">Tertiary</ion-button> -->
+        </ion-buttons>
+      </ion-item>
+
+
+    </ion-list>
+
+  </div>
+</ion-content>

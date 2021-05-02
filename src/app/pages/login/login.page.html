@@ -9,7 +9,7 @@
   <form style="margin-top: 50px;" [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
     <ion-item>
       <ion-label>Correo</ion-label>
-      <ion-input formControlName="email"> </ion-input>
+      <ion-input  type="email" formControlName="email"> </ion-input>
     </ion-item>
 
     <div class="validation-error">

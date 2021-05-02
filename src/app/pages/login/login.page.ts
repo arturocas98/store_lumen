@@ -56,15 +56,20 @@ export class LoginPage implements OnInit {
     this.usuario.password = value.password;
     this.usuario.return_secure_token = true;
     this.my_validators.showLoader("Iniciando sesión ... ");
-    this.authService.getByFilter("?email="+this.usuario.email).subscribe((res:any)=>{
-      if (res.result.length > 0) {
+    this.authService.getByFilter("email",this.usuario.email).subscribe((res:any)=>{
+      if (Object.keys(res).length > 0) {
         this.authService.loginAuth(this.usuario).subscribe((resp:any)=>{
           console.log("respuesta:",resp);
           
           this.usuario.idToken = resp.idToken;
-          this.usuario.id = res.result[0].id;
+          // this.usuario.id = res.result[0].id;
           // console.log("data:",data);
-          this.authService.updateUser(this.usuario).subscribe(resp3=>{
+          let id = Object.keys(res).toString();
+          console.log("id:",id);
+          let body = {
+            idToken: resp.idToken
+          }
+          this.authService.updateUser(id,body).subscribe(resp3=>{
             
             localStorage.setItem("idToken",this.usuario.idToken);
             localStorage.setItem("email", resp['email']);
@@ -76,12 +81,18 @@ export class LoginPage implements OnInit {
             this.navController.navigateForward('/home');
             this.menu.enable(true);
           });
+        },err=>{
+          this.my_validators.presentAlertError("Correo o contraseña incorrecto");
+          this.my_validators.hideLoader();
         });
       }else{
         this.my_validators.presentAlertError("No tiene una cuenta registrada");
         this.my_validators.hideLoader();
       }
 
+    },err=>{
+      this.my_validators.presentAlertError("No se ha podido conectar con el servidor");
+      this.my_validators.hideLoader();
     });
     
   }

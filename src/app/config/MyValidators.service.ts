@@ -3,18 +3,17 @@ import { Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
-  })
+})
 export class MyValidators {
-    
+
     constructor(
-       
+
         public loadingController: LoadingController,
         public alertCtrl: AlertController,
         private navCtr: NavController,
     ) {
 
     }
-    
 
     async presentAlertError(mensaje) {
         const alert = await this.alertCtrl.create({
@@ -35,7 +34,9 @@ export class MyValidators {
             buttons: [{
                 text: 'Aceptar',
                 handler: () => {
-                    this.navCtr.navigateBack(route);
+                    if (route != undefined) {
+                        this.navCtr.navigateBack(route);
+                    }
 
                 }
             }]
@@ -66,6 +67,27 @@ export class MyValidators {
             console.log('error', error);
         });
 
+    }
+
+    public soloLetras(e) {
+        // console.log(e);
+        let key = e.keyCode || e.which;
+        let tecla = String.fromCharCode(key).toLowerCase();
+        let letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+        let especiales: any;
+        especiales = "8-37-39-46";
+
+        let tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+            return false;
+        }
     }
 
 }

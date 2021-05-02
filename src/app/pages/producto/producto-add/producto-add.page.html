@@ -1,0 +1,125 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goToRegister()">
+                <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+
+            </ion-button>
+        </ion-buttons>
+        <ion-title> Nuevo producto</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+    <div id="container" style="border-radius: 50px;">
+        <form [formGroup]="productoForm" (ngSubmit)="register(productoForm.value)">
+            <!-- <ion-item>
+                <figure (click)="takePhoto()" class="imageAdd">
+                    <img [src]="productImage" *ngIf="!photo" style="border-radius: 5%;">
+                    <img [src]="photo" *ngIf="photo" style="border-radius: 5%;">
+                </figure>
+            </ion-item> -->
+
+            <ion-item>
+                
+                <label for="file" >
+                    <figure class="imageAdd">
+                        <img [src]="productImage" *ngIf="!photo" style="border-radius: 5%;">
+                        <img [src]="photo" *ngIf="photo" style="border-radius: 5%;">
+                    </figure>
+                </label>
+
+
+                <input id="file" type="file" #inputFile name="image" (change)="uploadImage($event)"
+                    style="display: none;" />
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Nombre</ion-label>
+                <ion-input type="text" formControlName="nombre"> </ion-input>
+            </ion-item>
+
+            <div class="validation-error">
+                <ng-container *ngFor="let validation of validation_messages.nombre">
+                    <div *ngIf="productoForm.get('nombre').hasError(validation.type) 
+                  && (productoForm.get('nombre').dirty || 
+                  productoForm.get('nombre').touched) ">
+                        {{validation.message}}
+                    </div>
+
+                </ng-container>
+            </div>
+            <!-- {{errorMessage}} -->
+
+            <ion-item>
+                <ion-label>Precio</ion-label>
+                <ion-input type="text" formControlName="precio"> </ion-input>
+            </ion-item>
+
+            <div class="validation-error">
+                <ng-container *ngFor="let validation of validation_messages.precio">
+                    <div *ngIf="productoForm.get('precio').hasError(validation.type) 
+                  && (productoForm.get('precio').dirty ||
+                  productoForm.get('precio').touched)">
+                        {{validation.message}}
+                    </div>
+
+                </ng-container>
+            </div>
+
+
+            <ion-item>
+                <ion-label>Categoria</ion-label>
+                <ion-select formControlName="categoria" value="dog">
+                    <ion-select-option value="cat">Cat</ion-select-option>
+                    <ion-select-option value="dog">Dog</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+
+
+            <div class="validation-error">
+                <ng-container *ngFor="let validation of validation_messages.categoria">
+                    <div *ngIf="productoForm.get('categoria').hasError(validation.type) 
+                  && (productoForm.get('categoria').dirty || 
+                  productoForm.get('categoria').touched) ">
+                        {{validation.message}}
+                    </div>
+
+                </ng-container>
+            </div>
+            <!-- {{errorMessage}} -->
+
+            <ion-item>
+                <ion-label>Unidad de medida</ion-label>
+                <ion-select formControlName="unidad_medida" value="dog">
+                    <ion-select-option value="cat">Cat</ion-select-option>
+                    <ion-select-option value="dog">Dog</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <div class="validation-error">
+                <ng-container *ngFor="let validation of validation_messages.unidad_medida">
+                    <div *ngIf="productoForm.get('unidad_medida').hasError(validation.type) 
+                  && (productoForm.get('unidad_medida').dirty ||
+                  productoForm.get('unidad_medida').touched)">
+                        {{validation.message}}
+                    </div>
+
+                </ng-container>
+            </div>
+
+            <ion-button expand="full" [disabled]="!productoForm.valid" shape="round" color="success" type="submit">
+                Registrar
+            </ion-button>
+
+            {{errorMessage}}
+
+
+        </form>
+
+
+    </div>
+</ion-content>

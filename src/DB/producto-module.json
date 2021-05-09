@@ -1,0 +1,26 @@
+{
+    "producto":{
+        "SXJKWQYWQHWQWMET262":{
+            "nombre": "fanta",
+            "imagen": "producto1.jpg"      
+        }
+    },
+    "categoria":{
+        "KSUUWTQWUQ212715W":{
+            "nombre":"nueva cate"
+        }
+    },
+    "unidad_medida":{
+        "HYQUTWUQ212182FF6F1":{
+            "nombre":"nueva unidad"
+        }
+    },
+    "usuario":{
+        "YWQIWYQ162816218SHHSA":{
+            "nombre":"Arturo",
+            "apellido":"Castro",
+            "email":"arturocastro98@hotmail.com",
+            "idToken":""
+        }
+    }
+}

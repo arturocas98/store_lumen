@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goToListUnidad()">
+                <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+
+            </ion-button>
+        </ion-buttons>
+        <ion-title> Editar unidad de medida</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+    <div id="container" style="border-radius: 50px;">
+        <form [formGroup]="unidadForm" (ngSubmit)="register(unidadForm.value)">
+            
+            <ion-item>
+                <ion-label>Nombre</ion-label>
+                <ion-input type="text" formControlName="nombre"> </ion-input>
+            </ion-item>
+
+            <div class="validation-error">
+                <ng-container *ngFor="let validation of validation_messages.nombre">
+                    <div *ngIf="unidadForm.get('nombre').hasError(validation.type) 
+                  && (unidadForm.get('nombre').dirty || 
+                  unidadForm.get('nombre').touched) ">
+                        {{validation.message}}
+                    </div>
+
+                </ng-container>
+            </div>
+           
+            <ion-button expand="full" [disabled]="!unidadForm.valid" shape="round" color="success" type="submit">
+                Actualizar
+            </ion-button>
+
+            {{errorMessage}}
+
+
+        </form>
+
+
+    </div>
+</ion-content>

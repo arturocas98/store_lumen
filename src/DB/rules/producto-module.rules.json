@@ -1,0 +1,20 @@
+{
+    "rules": {
+        "usuario": {
+            ".read": true,
+            ".write": "true"
+        },
+        "producto": {
+            ".read": true,
+            ".write": "auth != null"
+        },
+        "unidad_medida": {
+            ".read": true,
+            ".write": "auth != null"
+        },
+        "subcategoria": {
+            ".read": true,
+            ".write": "auth != null"
+        }
+    }
+}

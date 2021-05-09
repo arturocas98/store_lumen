@@ -15,8 +15,9 @@ export const environment = {
   login:'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAFUmp4pVUx2huv5vVklwvO59RFluzTlBw',
   registro:'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAFUmp4pVUx2huv5vVklwvO59RFluzTlBw',
   getUserData: 'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyAFUmp4pVUx2huv5vVklwvO59RFluzTlBw',
-  URL_API:'http://localhost:8000',
+  // URL_API:'http://localhost:8000',
   // URL_API:'https://storeapilumen.000webhostapp.com',
+  URL_API: 'https://tienda-a5ee1-default-rtdb.firebaseio.com'
 
 };
 

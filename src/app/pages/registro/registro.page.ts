@@ -4,6 +4,7 @@ import { AlertController, LoadingController, NavController } from '@ionic/angula
 import { MyValidators } from 'src/app/config/MyValidators.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Usuario } from 'src/app/models/Usuario';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-registro',
@@ -21,7 +22,7 @@ export class RegistroPage implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private navCtr: NavController,
-    private my_validators:MyValidators
+    private my_validators: MyValidators
   ) {
     this.registerForm = this.formBuilder.group({
       email: new FormControl(
@@ -83,7 +84,7 @@ export class RegistroPage implements OnInit {
     ]
   }
 
-  
+
 
   goToLogin() {
     this.navCtr.navigateBack('/login');
@@ -91,7 +92,6 @@ export class RegistroPage implements OnInit {
 
   register(value) {
     console.log("value:", value);
-    this.my_validators.showLoader("Registrando ....");
 
     this.usuario.nombre = value.nombre;
     this.usuario.apellido = value.apellido;
@@ -99,15 +99,16 @@ export class RegistroPage implements OnInit {
     this.usuario.password = value.password;
     this.usuario.return_secure_token = true;
 
-    this.authService.getByFilter("?email="+this.usuario.email).subscribe((res:any)=>{
-      if (res.result.length > 0) {
-        let p1 = this.my_validators.hideLoader();
-        let p2 = this.my_validators.presentAlertError("Correo ya registrado");
-        Promise.all([p1, p2]);
+    this.authService.getByFilter("email",this.usuario.email).subscribe((res:any)=>{
+      if (Object.keys(res).length > 0) {
+        
+        this.my_validators.presentAlertError("Correo ya registrado");
+        // Promise.all([p1, p2]);
       }else{
+        this.my_validators.showLoader("Registrando ....");
         this.authService.registerAuth(this.usuario).subscribe((res:any) => {
           console.log("respuesta:",res);
-          // this.usuario.idToken = res['idToken'];
+          this.usuario.idToken = res['idToken'];
           this.authService.registerDatabase(this.usuario).subscribe(res2=>{
             let p1s = this.my_validators.hideLoader();
             let p2s = this.my_validators.presentAlertSuccess("/login");
@@ -126,4 +127,44 @@ export class RegistroPage implements OnInit {
    
   }
 
+
+
 }
+
+// register(value) {
+//   console.log("value:", value);
+
+//   this.usuario.nombre = value.nombre;
+//   this.usuario.apellido = value.apellido;
+//   this.usuario.email = value.email;
+//   this.usuario.password = value.password;
+//   this.usuario.return_secure_token = true;
+//   this.my_validators.showLoader("Registrando ....");
+//   this.authService.getByFilter("email", this.usuario.email).subscribe((res: any) => {
+//     console.log("respuesta:", res);
+//     // this.my_validators.hideLoader();
+//     if (Object.keys(res).length > 0) {
+//       let p1s = this.my_validators.hideLoader();
+//       let p2s = this.my_validators.presentAlertError("Correo ya registrado");
+//       Promise.all([p1s, p2s]);
+//       // this.my_validators.presentAlertError("Correo ya registrado");
+//     } else {
+//       this.authService.registerAuth(this.usuario).subscribe((resAuth: any) => {
+//         console.log("respuesta:", resAuth);
+//         this.usuario.idToken = res['idToken'];
+//         this.authService.registerDatabase(this.usuario).subscribe(resRegister => {
+//           this.my_validators.alertaExitosa("/login")
+//         }, err => {
+//           this.my_validators.alertaErronea("La solicitud no tuvo exito");
+//         });
+//       });
+//     }
+
+//   }, err => {
+//     this.my_validators.alertaErronea("No se ha podido conectar con el servidor");
+//   });
+
+//   return;
+
+
+// }

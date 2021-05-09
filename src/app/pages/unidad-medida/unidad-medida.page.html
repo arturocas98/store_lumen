@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Unidad de medida</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+
+    <ion-list>
+
+      <section>
+        <ion-searchbar placeholder="Buscar" (keypress)="my_validators.soloLetras($event)" (ionClear)="clear()" (keyup)="search(buscar.value)" #buscar
+          showCancelButton="never"></ion-searchbar>
+
+      </section>
+
+      <ion-list-header>
+        <ion-button (click)="add()" color="warning">
+          <ion-icon name="add-circle-sharp" ios="add-circle-outline"></ion-icon>
+        </ion-button>
+        <h2>Listado de unidades de medida</h2>
+
+      </ion-list-header>
+
+      <ion-item *ngIf="unidades.length == 0" style="text-align: center;">
+        <ion-label>No hay datos para mostrar </ion-label>
+      </ion-item>
+
+      <ion-item *ngFor="let unidad of unidades;let i = index;" style="margin-top:10px">
+
+
+
+        <ion-label>
+          <h2>{{unidad.nombre|titlecase}} </h2>
+
+        </ion-label>
+        <ion-buttons slot="end">
+
+          <ion-button (click)="edit(idUnidades[i])" size="small" color="success">
+            <ion-icon name="pencil-sharp" ios="pencil-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button size="small" color="danger" (click)="presentAlertEliminacion(idUnidades[i])">
+            <ion-icon name="trash-sharp" ios="trash-outline"></ion-icon>
+          </ion-button>
+
+          <!-- <ion-button size="small" color="tertiary">Tertiary</ion-button> -->
+        </ion-buttons>
+      </ion-item>
+
+
+
+    </ion-list>
+
+  </div>
+</ion-content>

@@ -7,6 +7,7 @@ import { Chart, registerables  } from 'chart.js';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  darkActive : boolean = true;
 
   constructor(
     private ref:ChangeDetectorRef
@@ -17,6 +18,14 @@ export class HomePage implements OnInit {
     this.ref.detectChanges();
     Chart.register(...registerables); 
     this.drawChart();
+    this.drawChartPie();
+
+  }
+
+  darkMode() {
+    this.darkActive = ! this.darkActive;
+    document.body.classList.toggle('dark');
+    // console.log(event);
   }
 
   drawChart() {
@@ -55,8 +64,45 @@ export class HomePage implements OnInit {
           y: {
             beginAtZero: true
           }
-        }
+        },
+        responsive:true,
+        maintainAspectRatio:false
       }
+    });
+
+  }
+
+  drawChartPie() {
+
+    // var ctx = document.getElementById('myChart').getContext('2d');
+    const canvas = <HTMLCanvasElement>document.getElementById('chartPie');
+    const ctx = canvas.getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: [
+          'Red',
+          'Blue',
+          'Yellow'
+        ],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [200, 50, 100],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ],
+          hoverOffset: 4
+        }]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio: false,
+      }
+
+      
+       
     });
 
   }

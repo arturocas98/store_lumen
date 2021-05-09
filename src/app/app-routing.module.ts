@@ -11,14 +11,9 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate:[LoginGuard]
   },
-  // {
-  //   path: 'menu',
-  //   loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule),
-  //   // canActivate:[LoginGuard]
-  // },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
@@ -29,27 +24,33 @@ const routes: Routes = [
   },
   {
     path: 'producto',
-    loadChildren: () => import('./pages/producto/producto.module').then( m => m.ProductoPageModule)
+    loadChildren: () => import('./pages/producto/producto.module').then( m => m.ProductoPageModule),
+    canActivate:[LoginGuard]
   },
   {
     path: 'unidad-medida',
-    loadChildren: () => import('./unidad-medida/unidad-medida.module').then( m => m.UnidadMedidaPageModule)
+    loadChildren: () => import('./pages/unidad-medida/unidad-medida.module').then( m => m.UnidadMedidaPageModule),
+    canActivate:[LoginGuard]
   },
   {
     path: 'categoria',
-    loadChildren: () => import('./categoria/categoria.module').then( m => m.CategoriaPageModule)
+    loadChildren: () => import('./pages/categoria/categoria.module').then( m => m.CategoriaPageModule),
+    canActivate:[LoginGuard]
   },
   {
     path: 'inventario',
-    loadChildren: () => import('./inventario/inventario.module').then( m => m.InventarioPageModule)
+    loadChildren: () => import('./pages/inventario/inventario.module').then( m => m.InventarioPageModule),
+    canActivate:[LoginGuard]
   },
   {
     path: 'compras',
-    loadChildren: () => import('./compras/compras.module').then( m => m.ComprasPageModule)
+    loadChildren: () => import('./pages/compras/compras.module').then( m => m.ComprasPageModule),
+    canActivate:[LoginGuard]
   },
   {
     path: 'ventas',
-    loadChildren: () => import('./ventas/ventas.module').then( m => m.VentasPageModule)
+    loadChildren: () => import('./pages/ventas/ventas.module').then( m => m.VentasPageModule),
+    canActivate:[LoginGuard]
   },
 ];
 

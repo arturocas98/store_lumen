@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goToList()">
+                <ion-icon size="large" name="arrow-back-outline"></ion-icon>
+
+            </ion-button>
+        </ion-buttons>
+        <ion-title> Editar categoría</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+    <div id="container" style="border-radius: 50px;">
+        <form [formGroup]="categoriaForm" (ngSubmit)="register(categoriaForm.value)">
+
+            <ion-item>
+                <ion-label>Nombre</ion-label>
+                <ion-input type="text" formControlName="nombre"> </ion-input>
+            </ion-item>
+
+            <div class="validation-error">
+                <ng-container *ngFor="let validation of validation_messages.nombre">
+                    <div *ngIf="categoriaForm.get('nombre').hasError(validation.type) 
+                  && (categoriaForm.get('nombre').dirty || 
+                  categoriaForm.get('nombre').touched) ">
+                        {{validation.message}}
+                    </div>
+
+                </ng-container>
+            </div>
+
+            <ion-button expand="full" [disabled]="!categoriaForm.valid" shape="round" color="success" type="submit">
+                Actualizar
+            </ion-button>
+
+
+
+        </form>
+
+
+    </div>
+</ion-content>
